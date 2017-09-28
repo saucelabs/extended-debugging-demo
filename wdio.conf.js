@@ -10,7 +10,7 @@ exports.config = {
     //
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
-    sauceConnect: true,
+    // sauceConnect: true, // enable when local testing
     //
     // ==================
     // Specify Test Files
@@ -88,7 +88,8 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost',
+    // baseUrl: 'http://localhost:8080', // for local testing
+    baseUrl: 'http://extended-debugging-demo.s3-website-us-west-1.amazonaws.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -122,12 +123,13 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['static-server', 'sauce'],
-    staticServerPort: 8080,
-    staticServerFolders: [
-        { mount: '/', path: './site' },
-        { mount: '/bootstrap', path: './node_modules/bootstrap' },
-    ],
+    services: [/* enable when doing local testing: 'static-server', */'sauce'],
+    // Enable when doing local testing
+    // staticServerPort: 8080,
+    // staticServerFolders: [
+    //     { mount: '/', path: './site' },
+    //     { mount: '/bootstrap', path: './node_modules/bootstrap' },
+    // ],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber

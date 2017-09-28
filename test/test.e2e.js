@@ -1,7 +1,7 @@
 const assert = require('assert')
 
 describe('site test', () => {
-    before(() => browser.url('http://localhost:8080'))
+    before(() => browser.url('/'))
     
     it('should have opened correct page', () => {
         assert.deepEqual(browser.getTitle(), 'Jumbotron Template for Bootstrap');
