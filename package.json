@@ -4,7 +4,8 @@
   "description": "Demo to show off extended debugging functionality",
   "main": "./node_modules/.bin/wdio",
   "scripts": {
-    "test": "wdio"
+    "test": "wdio",
+    "test:local": "wdio wdio.local.conf.js"
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,12 @@
   "homepage": "https://github.com/christian-bromann/extended_debugging_demo#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "webdriverio": "^4.8.0",
+    "deepmerge": "^1.5.2",
     "wdio-mocha-framework": "^0.5.11",
     "wdio-sauce-service": "^0.4.0",
     "wdio-spec-reporter": "^0.1.2",
-    "wdio-static-server-service": "^1.0.1"
+    "wdio-static-server-service": "^1.0.1",
+    "webdriverio": "^4.8.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
