@@ -6,9 +6,8 @@ const config = require('./wdio.conf')
 let server
 
 exports.config = merge(config.config, {
-    sauceConnect: true,
     baseUrl: 'http://localhost:8080',
-    services: ['static-server', 'sauce'],
+    services: ['static-server'],
     staticServerPort: 8080,
     staticServerFolders: [
         { mount: '/', path: './site' },
@@ -18,6 +17,11 @@ exports.config = merge(config.config, {
         server = spawn(`node ${__dirname}/server/index.js`, { shell: true })
     },
     onComplete: function() {
-        server.close()
+        server.kill()
     }
 })
+
+if (exports.config.user && exports.config.key) {
+    exports.config.sauceConnect = true
+    exports.config.services.push('sauce')
+}
