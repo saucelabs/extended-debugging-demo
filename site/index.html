@@ -140,14 +140,20 @@
 
         
         $('#login').click(function () {
-            var xhr = createCORSRequest('GET', 'http://localhost:8000/api/v1/login')
+            var xhr = createCORSRequest('GET', 'http://ec2-54-205-6-40.compute-1.amazonaws.com/api/v1/login')
 
-            xhr.onload = function() {
-                location.assign('/admin.html')
-            }
+            xhr.onload = function(response) {
+                if (response.currentTarget.status === 200) {
+                    return location.assign('/admin.html')
+                }
 
-            xhr.onerror = function() {
-                alert('Woops, there was an error making the request.')
+                $('#login').popover({
+                    title: 'Login Error',
+                    placement: 'bottom',
+                    trigger: 'manual',
+                    content: 'Oh snap! Login failed!'
+                })
+                $('#login').popover('show')
             }
 
             xhr.send()

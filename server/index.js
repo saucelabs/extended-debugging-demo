@@ -4,10 +4,15 @@ const cors = require('cors')
 const app = express()
 app.use(cors())
 
-const PORT = 8000
+const PORT = 80
 
 app.get('/api/v1/login', function (req, res) {
-  setTimeout(() => res.json({ message: 'some server response' }), Math.random() * 20000)
+    if (Math.random() > 0.5) {
+        res.status(500)
+        return res.json({ error: 'INTERNAL SERVER ERROR' })
+    }
+
+    return res.json({ message: 'some server response' })
 })
 
 app.listen(PORT, () => console.log(`Demo app listening on port ${PORT}!`))
