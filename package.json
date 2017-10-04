@@ -19,7 +19,9 @@
   "homepage": "https://github.com/christian-bromann/extended_debugging_demo#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "cors": "^2.8.4",
     "deepmerge": "^1.5.2",
+    "express": "^4.16.1",
     "wdio-mocha-framework": "^0.5.11",
     "wdio-sauce-service": "^0.4.0",
     "wdio-spec-reporter": "^0.1.2",

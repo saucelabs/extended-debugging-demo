@@ -8,8 +8,9 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    user: process.env.SAUCE_USERNAME,
-    key: process.env.SAUCE_ACCESS_KEY,
+    // host: 'stew23.stew.saucelabs.net',
+    user: process.env.SAUCE_USERNAME, // 'admin'
+    key: process.env.SAUCE_ACCESS_KEY, // '0e779f56-385a-41be-a562-6f6908bf5acf'
     //
     // ==================
     // Specify Test Files
