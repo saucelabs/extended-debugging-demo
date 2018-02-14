@@ -1,5 +1,8 @@
+var baclend = require('./build')
+
+
+
 exports.config = {
-    
     //
     // =================
     // Service Providers
@@ -53,7 +56,7 @@ exports.config = {
         extendedDebugging: true,
         browserName: 'chrome',
         platform: 'Windows 10',
-        version: '55.0',
+        version: '64.0',
         build: 'Build ' + Date.now()
     }, {
         extendedDebugging: true,
@@ -136,7 +139,7 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
     reporters: ['spec'],
-    
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
