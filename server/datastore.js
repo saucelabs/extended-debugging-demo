@@ -4,25 +4,37 @@ export default class DataStore {
     }
 
     save (data) {
-        this.store.push(data)
+        data.id = this.store.size
+        this.store.set(data.id, data)
     }
 
     delete (key) {
-        delete this.store[key]
+        this.store.delete(key)
     }
 
     deleteAll () {
-        this.store = []
+        this.store = new Map()
+    }
+
+    deleteComplete () {
+        for (const [id, data] of this.store) {
+            if (data.completed) this.delete(id)
+        }
     }
 
     get (key) {
-        const values = []
-        for (const [dbKey, value] of Object.entries(this.store)) {
-            if (dbKey.startsWith(key)) {
-                value.push(...value)
-            }
-        }
+        return this.store.get(key)
+    }
 
-        return values
+    update (key, data) {
+        this.store.set(key, data)
+    }
+
+    getAll () {
+        const entries = []
+        for (const [id, data] of this.store) {
+            entries.push(data)
+        }
+        return entries
     }
 }

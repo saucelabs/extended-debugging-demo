@@ -6,9 +6,9 @@
   "scripts": {
     "build": "babel server/ -d build/",
     "eslint": "eslint ./server ./test ./wdio.*",
+    "start": "node build/start",
     "test": "run-s eslint test:local",
     "test:local": "wdio wdio.local.conf.js",
-    "validate": "node build/start validate",
     "watch": "npm run build -- --watch"
   },
   "repository": {

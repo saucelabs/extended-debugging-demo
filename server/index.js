@@ -33,8 +33,8 @@ api.get('/', (req, res) => {
 });
 
 api.get('/todos', (req, res) => {
-    const entries = todos.getAll()
-    res.status(200).json(entries)
+    const entries = dataStore.getAll()
+    res.status(200).json(entries || {})
 });
 
 api.get('/todos/:id', (req, res) => {
@@ -45,7 +45,7 @@ api.get('/todos/:id', (req, res) => {
 
 api.post('/todos', (req, res) => {
     dataStore.save(req.body)
-    return res.status(200).json(req.body)
+    return res.status(201).json(req.body)
 });
 
 api.put('/todos/:id', (req, res) => {
@@ -55,7 +55,7 @@ api.put('/todos/:id', (req, res) => {
 });
 
 api.delete('/todos', (req, res) => {
-    dataStore.deleteAll()
+    dataStore.deleteComplete()
     return res.status(202).json({})
 });
 
