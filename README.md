@@ -1,7 +1,7 @@
 Extended Debugging Demo
 =======================
 
-This project is a simple demo on how to utilize the extended debugging functionality on Sauce Labs. It runs a test suite that fails 75% of of the time due to a JavaScript bug. The guinea pig is deployed to [AWS](http://extended-debugging-demo.s3-website-us-west-1.amazonaws.com) but can be also served via localhost to demo usage of Sauce Connect.
+This project is a simple demo on how to utilize the extended debugging functionality on Sauce Labs. It runs a test suite that fails 75% of of the time due to a failing backend response. To use the local server you need to run your tests locally with SauceConnectm.
 
 # Requirements
 
@@ -16,9 +16,6 @@ To install the demo you first need to download the project:
 ```sh
 # via git
 $ g clone git@github.com:saucelabs/extended_debugging_demo.git
-# or download as zip
-$ curl https://github.com/saucelabs/extended_debugging_demo/archive/master.zip -o extended_debugging_demo.zip
-$ unzip extended_debugging_demo.zip
 ```
 
 Then jump into the folder and install the dependencies:
@@ -41,10 +38,4 @@ Then run the demo:
 
 ```sh
 $ npm run test
-```
-
-If you want to include the usage of Sauce Connect in your demo run the following command which will spawn a static server that will be accessed via Sauce Connect tunnel:
-
-```sh
-$ npm run test:local
 ```
