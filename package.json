@@ -4,8 +4,12 @@
   "description": "Demo to show off extended debugging functionality",
   "main": "./node_modules/.bin/wdio",
   "scripts": {
-    "test": "wdio",
-    "test:local": "wdio wdio.local.conf.js"
+    "build": "babel server/ -d build/",
+    "eslint": "eslint ./server ./test ./wdio.*",
+    "test": "run-s eslint test:local",
+    "test:local": "wdio wdio.local.conf.js",
+    "validate": "node build/start validate",
+    "watch": "npm run build -- --watch"
   },
   "repository": {
     "type": "git",
@@ -18,15 +22,34 @@
   },
   "homepage": "https://github.com/christian-bromann/extended_debugging_demo#readme",
   "dependencies": {
+    "babel-cli": "6.24.1",
+    "babel-core": "6.25.0",
+    "babel-eslint": "7.2.3",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-env": "1.5.2",
+    "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.4",
     "deepmerge": "^1.5.2",
+    "eslint": "3.19.0",
+    "eslint-config-standard": "10.2.1",
+    "eslint-plugin-import": "2.3.0",
+    "eslint-plugin-node": "5.0.0",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "3.0.1",
     "express": "^4.16.1",
+    "npm-run-all": "^4.1.2",
+    "todomvc": "^0.1.0",
+    "todomvc-api": "^0.2.1",
     "wdio-mocha-framework": "^0.5.11",
     "wdio-sauce-service": "^0.4.0",
     "wdio-spec-reporter": "^0.1.2",
     "wdio-static-server-service": "^1.0.1",
-    "webdriverio": "^4.8.0"
+    "webdriverio": "^4.8.0",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {}
 }
