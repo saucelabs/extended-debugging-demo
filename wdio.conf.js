@@ -1,6 +1,8 @@
-var baclend = require('./build')
+var backend = require('./build')
+import { DEFAULT_PORT } from './constants'
 
-
+const app = backend.app
+let server
 
 exports.config = {
     //
@@ -160,8 +162,14 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        let resolve = Promise.resolve
+        let promise = new Promise(r => (resolve = r))
+        let server = app.listen(DEFAULT_PORT, () => {
+            console.log(`Started server on port ${DEFAULT_PORT}`)
+            return resolve()
+        })
+    },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
@@ -254,6 +262,7 @@ exports.config = {
      * possible to defer the end of the process using a promise.
      * @param {Object} exitCode 0 - success, 1 - fail
      */
-    // onComplete: function(exitCode) {
-    // }
+    onComplete: function(exitCode) {
+        server.close()
+    }
 }
