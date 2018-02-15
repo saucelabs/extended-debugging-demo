@@ -60,12 +60,6 @@ exports.config = {
         platform: 'Windows 10',
         version: '64.0',
         build: 'Build ' + Date.now()
-    }, {
-        extendedDebugging: true,
-        browserName: 'firefox',
-        platform: 'Windows 10',
-        version: '55.0',
-        build: 'Build ' + Date.now()
     }],
     //
     // ===================
@@ -93,7 +87,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://extended-debugging-demo.s3-website-us-west-1.amazonaws.com',
+    baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
