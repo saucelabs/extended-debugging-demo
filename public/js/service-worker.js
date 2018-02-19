@@ -1,3 +1,5 @@
+/* global self:true, caches:true, console: true, Response: true, Headers: true, fetch: true */
+
 console.log('WORKER: executing.')
 
 /* A version number is useful when updating the worker logic,
@@ -27,7 +29,7 @@ var offlineFundamentals = [
    You can use this event to prepare the service worker to be able to serve
    files while visitors are offline.
 */
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     console.log('WORKER: install event in progress.')
 
     /**
@@ -82,8 +84,8 @@ self.addEventListener('fetch', function (event) {
          * If we don't block the event as shown below, then the request will go to
          * the network as usual.
          */
-         console.log('WORKER: fetch event ignored.', event.request.method, event.request.url)
-         return
+        console.log('WORKER: fetch event ignored.', event.request.method, event.request.url)
+        return
     }
 
     /**
