@@ -1,5 +1,5 @@
-var backend = require('./build')
-import { DEFAULT_PORT } from './constants'
+var backend = require('../../build')
+const { DEFAULT_PORT } = require('../../build/constants')
 
 const app = backend.app
 let server
@@ -13,9 +13,8 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    // host: 'stew23.stew.saucelabs.net',
-    user: process.env.SAUCE_USERNAME, // 'admin'
-    key: process.env.SAUCE_ACCESS_KEY, // '0e779f56-385a-41be-a562-6f6908bf5acf'
+    // user: process.env.SAUCE_USERNAME, // 'admin'
+    // key: process.env.SAUCE_ACCESS_KEY, // '0e779f56-385a-41be-a562-6f6908bf5acf'
     //
     // ==================
     // Specify Test Files
@@ -26,12 +25,18 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/*.e2e.js'
+        './test/js/*.e2e.js'
     ],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
     ],
+    suites: {
+        withCustomCommands: [],
+        withoutCustomCommands: [
+            './test/js/test_without_custom_commands.e2e.js'
+        ]
+    },
     //
     // ============
     // Capabilities
@@ -121,7 +126,11 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['sauce'],
+    // services: ['sauce'],
+    // sauceConnect: true,
+    // sauceConnectOpts: {
+    //     noAutodetect: true
+    // },
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -141,7 +150,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60 * 1000
+        timeout: 60 * 1000 * 2,
+        compilers: ['js:babel-core/register']
     },
     //
     // =====
@@ -157,12 +167,17 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      */
     onPrepare: function (config, capabilities) {
-        let resolve = Promise.resolve
-        let promise = new Promise(r => (resolve = r))
-        let server = app.listen(DEFAULT_PORT, () => {
-            console.log(`Started server on port ${DEFAULT_PORT}`)
-            return resolve()
+        let _resolve = Promise.resolve
+        let promise = new Promise((resolve) => {
+            _resolve = resolve
         })
+
+        server = app.listen(DEFAULT_PORT, () => {
+            console.log(`Started server on port ${DEFAULT_PORT}`)
+            return _resolve()
+        })
+
+        return promise
     },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
@@ -256,7 +271,7 @@ exports.config = {
      * possible to defer the end of the process using a promise.
      * @param {Object} exitCode 0 - success, 1 - fail
      */
-    onComplete: function(exitCode) {
+    onComplete: (exitCode) => {
         server.close()
     }
 }

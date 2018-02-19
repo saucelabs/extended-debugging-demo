@@ -32,8 +32,8 @@ export default class DataStore {
 
     getAll () {
         const entries = []
-        for (const [id, data] of this.store) {
-            entries.push(data)
+        for (const data of this.store) {
+            entries.push(data[1])
         }
         return entries
     }

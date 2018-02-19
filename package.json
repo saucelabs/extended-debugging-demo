@@ -6,9 +6,9 @@
   "scripts": {
     "build": "babel server/ -d build/",
     "eslint": "eslint ./server ./test ./wdio.*",
-    "start": "node build/start",
-    "test": "run-s eslint test:local",
-    "test:local": "wdio wdio.local.conf.js",
+    "start": "node ./build",
+    "test": "run-s eslint test:wdio",
+    "test:wdio": "wdio ./test/js/wdio.conf.js",
     "watch": "npm run build -- --watch"
   },
   "repository": {
@@ -42,8 +42,6 @@
     "eslint-plugin-standard": "3.0.1",
     "express": "^4.16.1",
     "npm-run-all": "^4.1.2",
-    "todomvc": "^0.1.0",
-    "todomvc-api": "^0.2.1",
     "wdio-mocha-framework": "^0.5.11",
     "wdio-sauce-service": "^0.4.0",
     "wdio-spec-reporter": "^0.1.2",
