@@ -5,7 +5,7 @@ import { argv } from 'yargs'
 import APIDemoServer from './api'
 import { DEFAULT_PORT } from './constants'
 
-class Application {
+export default class Application {
     constructor (port = DEFAULT_PORT) {
         this.port = port
         this.app = express()
@@ -37,5 +37,7 @@ class Application {
     }
 }
 
-const app = new Application(argv.port)
-app.run()
+if (require.main === module) {
+    const app = new Application(argv.port)
+    app.run()
+}

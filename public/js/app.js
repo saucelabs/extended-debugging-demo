@@ -36,11 +36,26 @@ if ('serviceWorker' in navigator) {
         /**
          * show that app is offline
          */
-        if (!navigator.onLine) {
+        function showOffline () {
             const offlineNote = document.createElement('p')
             const footer = document.getElementById('info')
+
+            /**
+             * wait until footer was rendered by Angular
+             */
+            if (!footer) {
+                return setTimeout(showOffline, 100)
+            }
+
+            const newNoteInput = document.querySelector('#new-todo')
+            newNoteInput.disabled = 'disabled'
+
             offlineNote.innerHTML = '(Offline Version)'
             footer.insertBefore(offlineNote, footer.childNodes[0])
+        }
+
+        if (!navigator.onLine) {
+            showOffline()
         }
     }, function () {
         console.log('CLIENT: service worker registration failure.')

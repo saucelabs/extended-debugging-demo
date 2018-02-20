@@ -11,12 +11,15 @@ describe('test without custom commands', () => {
         it('should enter new todos', () => {
             browser.setValue('#new-todo', 'Build slides for Saucecon talk')
             browser.keys('Enter')
+            browser.waitUntil(() => $$('#todo-list li').length === 1)
 
             browser.setValue('#new-todo', 'Rehearse talk')
             browser.keys('Enter')
+            browser.waitUntil(() => $$('#todo-list li').length === 2)
 
             browser.setValue('#new-todo', 'Present talk at Saucecon')
             browser.keys('Enter')
+            browser.waitUntil(() => $$('#todo-list li').length === 3)
         })
 
         it('should have 3 new todos', () => {
@@ -27,7 +30,7 @@ describe('test without custom commands', () => {
         it('should have stored todos in DB', () => {
             browser.url('/')
 
-            browser.waitForExist('#todo-count')
+            browser.waitForExist('#todo-list li')
             const todoCount = $('#todo-count strong')
             assert.deepEqual(todoCount.getText(), 3)
         })
@@ -58,7 +61,6 @@ describe('test without custom commands', () => {
             browser.pause(1000)
 
             const classNames = secondTodo.getAttribute('class')
-            console.log(classNames)
             assert.ok(classNames.includes('completed'))
         })
 

@@ -1,8 +1,6 @@
-var backend = require('../../build')
-const { DEFAULT_PORT } = require('../../build/constants')
+var Application = require('../../build')
 
-const app = backend.app
-let server
+let app
 
 exports.config = {
     //
@@ -35,7 +33,8 @@ exports.config = {
         withCustomCommands: [],
         withoutCustomCommands: [
             './test/js/test_without_custom_commands.e2e.js'
-        ]
+        ],
+        offlineTest: ['./test/js/offline.test.e2e.js']
     },
     //
     // ============
@@ -61,10 +60,14 @@ exports.config = {
     //
     capabilities: [{
         extendedDebugging: true,
+        crmuxdriverVersion: '0.2.0',
         browserName: 'chrome',
         platform: 'Windows 10',
         version: '64.0',
-        build: 'Build ' + Date.now()
+        build: 'Build ' + Date.now(),
+        chromeOptions: {
+            args: ['remote-debugging-port=9222']
+        }
     }],
     //
     // ===================
@@ -167,17 +170,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      */
     onPrepare: function (config, capabilities) {
-        let _resolve = Promise.resolve
-        let promise = new Promise((resolve) => {
-            _resolve = resolve
-        })
-
-        server = app.listen(DEFAULT_PORT, () => {
-            console.log(`Started server on port ${DEFAULT_PORT}`)
-            return _resolve()
-        })
-
-        return promise
+        app = new Application()
+        return app.run()
     },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
@@ -272,6 +266,6 @@ exports.config = {
      * @param {Object} exitCode 0 - success, 1 - fail
      */
     onComplete: (exitCode) => {
-        server.close()
+        app.shutdown()
     }
 }
