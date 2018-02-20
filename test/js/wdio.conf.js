@@ -30,7 +30,9 @@ exports.config = {
         // 'path/to/excluded/files'
     ],
     suites: {
-        withCustomCommands: [],
+        withCustomCommands: [
+            './test/js/test_with_custom_commands.e2e.js'
+        ],
         withoutCustomCommands: [
             './test/js/test_without_custom_commands.e2e.js'
         ],
