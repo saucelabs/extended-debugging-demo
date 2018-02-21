@@ -4,7 +4,9 @@
   "description": "Demo to show off extended debugging functionality",
   "main": "./node_modules/.bin/wdio",
   "scripts": {
-    "build": "babel server/ -d build/",
+    "build": "run-s build:*",
+    "build:bower": "cd public && bower install && cd ..",
+    "build:babel": "babel server/ -d build/",
     "eslint": "eslint ./server ./test ./wdio.*",
     "start": "npm run build && node ./build",
     "test": "run-s eslint test:wdio",
@@ -32,6 +34,7 @@
     "babel-preset-env": "1.5.2",
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "^3.3.7",
+    "bower": "^1.8.2",
     "cors": "^2.8.4",
     "deepmerge": "^1.5.2",
     "eslint": "3.19.0",
@@ -48,6 +51,5 @@
     "wdio-static-server-service": "^1.0.1",
     "webdriverio": "^4.8.0",
     "yargs": "^11.0.0"
-  },
-  "devDependencies": {}
+  }
 }
