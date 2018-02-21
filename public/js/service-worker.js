@@ -89,6 +89,13 @@ self.addEventListener('fetch', function (event) {
     }
 
     /**
+     * don't cache 3rd party script
+     */
+    if (event.request.url.includes('thirdPartyScript.js')) {
+        return
+    }
+
+    /**
      * Similar to event.waitUntil in that it blocks the fetch event on a promise.
      * Fulfillment result will be used as the response, and rejection will end in a
      * HTTP response indicating failure.

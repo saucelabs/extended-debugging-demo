@@ -25,6 +25,13 @@ export default class Application {
          * serve API under /api
          */
         this.app.use('/api', this.api.app)
+
+        /**
+         * serve expensive 3rd party script
+         */
+        this.app.get('/thirdPartyScript.js', (req, res) => setTimeout(() => {
+            res.set({ 'Content-Type': 'text/javascript' }).send('// nothing here actually')
+        }, 5000))
     }
 
     run () {
