@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel server/ -d build/",
     "eslint": "eslint ./server ./test ./wdio.*",
-    "start": "node ./build",
+    "start": "npm run build && node ./build",
     "test": "run-s eslint test:wdio",
     "test:wdio": "wdio ./test/js/wdio.conf.js",
     "watch": "npm run build -- --watch"
