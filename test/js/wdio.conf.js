@@ -30,13 +30,11 @@ exports.config = {
         // 'path/to/excluded/files'
     ],
     suites: {
-        withCustomCommands: [
-            './test/js/test_with_custom_commands.e2e.js'
-        ],
-        withoutCustomCommands: [
-            './test/js/test_without_custom_commands.e2e.js'
-        ],
-        offlineTest: ['./test/js/offline.test.e2e.js']
+        withCustomCommands: ['./test/js/test_with_custom_commands.e2e.js'],
+        withoutCustomCommands: ['./test/js/test_without_custom_commands.e2e.js'],
+        offlineTest: ['./test/js/offline.test.e2e.js'],
+        metrics: ['./test/js/metrics.logs.e2e.js'],
+        metricsWithCC: ['./test/js/metrics.logs.withcc.e2e.js']
     },
     //
     // ============
@@ -61,6 +59,11 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
+        loggingPrefs: {
+            'browser': 'ALL',
+            'driver': 'ALL',
+            'performance': 'ALL'
+        },
         extendedDebugging: true,
         crmuxdriverVersion: '0.2.0',
         browserName: 'chrome',
@@ -68,7 +71,10 @@ exports.config = {
         version: '64.0',
         build: 'Build ' + Date.now(),
         chromeOptions: {
-            args: ['remote-debugging-port=9222']
+            args: ['remote-debugging-port=9222'],
+            perfLoggingPrefs: {
+                enableNetwork: true
+            }
         }
     }],
     //
