@@ -1,7 +1,3 @@
-var Application = require('../../build')
-
-let app
-
 exports.config = {
     //
     // =================
@@ -30,10 +26,11 @@ exports.config = {
         // 'path/to/excluded/files'
     ],
     suites: {
-        withCustomCommands: ['./test/js/test_with_custom_commands.e2e.js'],
-        withoutCustomCommands: ['./test/js/test_without_custom_commands.e2e.js'],
+        blocked: ['./test/js/blocked.e2e.js'],
         offlineTest: ['./test/js/offline.test.e2e.js'],
-        metrics: ['./test/js/metrics.logs.e2e.js'],
+        populateTest: ['./test/js/populate.test.e2e.js'],
+        prePopulateTest: ['./test/js/prepopulate.test.e2e.js'],
+        pageload: ['./test/js/pageload.e2e.js'],
         metricsWithCC: ['./test/js/metrics.logs.withcc.e2e.js']
     },
     //
@@ -103,7 +100,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://saucecon.herokuapp.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -163,7 +160,7 @@ exports.config = {
         ui: 'bdd',
         timeout: 60 * 1000 * 2,
         compilers: ['js:babel-core/register']
-    },
+    }
     //
     // =====
     // Hooks
@@ -177,10 +174,8 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    onPrepare: function (config, capabilities) {
-        app = new Application()
-        return app.run()
-    },
+    // onPrepare: function (config, capabilities) {
+    // },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
@@ -273,7 +268,6 @@ exports.config = {
      * possible to defer the end of the process using a promise.
      * @param {Object} exitCode 0 - success, 1 - fail
      */
-    onComplete: (exitCode) => {
-        app.shutdown()
-    }
+    // onComplete: (exitCode) => {
+    // }
 }
