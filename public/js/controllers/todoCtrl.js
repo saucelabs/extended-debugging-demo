@@ -41,9 +41,9 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
         store.insert(newTodo)
             .then(function success () {
                 $scope.newTodo = ''
-                window.dataLayer.push({ action: 'addTodo' })
+                window.logEvent('addTodo', 'pageEvent', 'useraction')
             }, () => {
-                window.dataLayer.push({ action: 'addTodoError' })
+                window.logEvent('addTodoError', 'pageEvent', 'useraction')
             })
             .finally(function () {
                 $scope.saving = false
@@ -51,7 +51,7 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     }
 
     $scope.editTodo = function (todo) {
-        window.dataLayer.push({ action: 'editTodo' })
+        window.logEvent('editTodo', 'pageEvent', 'useraction')
         $scope.editedTodo = todo
         // Clone the original todo to restore it on demand.
         $scope.originalTodo = angular.extend({}, todo)
@@ -96,17 +96,17 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     }
 
     $scope.removeTodo = function (todo) {
-        window.dataLayer.push({ action: 'removeTodo' })
+        window.logEvent('removeTodo', 'pageEvent', 'useraction')
         store.delete(todo)
     }
 
     $scope.saveTodo = function (todo) {
-        window.dataLayer.push({ action: 'saveTodo' })
+        window.logEvent('saveTodo', 'pageEvent', 'useraction')
         store.put(todo)
     }
 
     $scope.toggleCompleted = function (todo, completed) {
-        window.dataLayer.push({ action: 'toggleCompleted' })
+        window.logEvent('toggleCompleted', 'pageEvent', 'useraction')
         if (angular.isDefined(completed)) {
             todo.completed = completed
         }
@@ -117,7 +117,7 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     }
 
     $scope.clearCompletedTodos = function () {
-        window.dataLayer.push({ action: 'clearCompletedTodos' })
+        window.logEvent('clearCompletedTodos', 'pageEvent', 'useraction')
         store.clearCompleted()
     }
 
