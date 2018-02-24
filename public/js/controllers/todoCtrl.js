@@ -28,7 +28,6 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     })
 
     $scope.addTodo = function () {
-        window.dataLayer.push(['addTodo'])
         var newTodo = {
             title: $scope.newTodo.trim(),
             completed: false
@@ -42,6 +41,9 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
         store.insert(newTodo)
             .then(function success () {
                 $scope.newTodo = ''
+                window.dataLayer.push(['addTodo'])
+            }, () => {
+                window.dataLayer.push(['addTodoError'])
             })
             .finally(function () {
                 $scope.saving = false
