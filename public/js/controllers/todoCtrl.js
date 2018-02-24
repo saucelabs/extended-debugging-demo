@@ -41,9 +41,9 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
         store.insert(newTodo)
             .then(function success () {
                 $scope.newTodo = ''
-                window.dataLayer.push(['addTodo'])
+                window.dataLayer.push({ action: 'addTodo' })
             }, () => {
-                window.dataLayer.push(['addTodoError'])
+                window.dataLayer.push({ action: 'addTodoError' })
             })
             .finally(function () {
                 $scope.saving = false
@@ -51,7 +51,7 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     }
 
     $scope.editTodo = function (todo) {
-        window.dataLayer.push(['editTodo'])
+        window.dataLayer.push({ action: 'editTodo' })
         $scope.editedTodo = todo
         // Clone the original todo to restore it on demand.
         $scope.originalTodo = angular.extend({}, todo)
@@ -96,17 +96,17 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     }
 
     $scope.removeTodo = function (todo) {
-        window.dataLayer.push(['removeTodo'])
+        window.dataLayer.push({ action: 'removeTodo' })
         store.delete(todo)
     }
 
     $scope.saveTodo = function (todo) {
-        window.dataLayer.push(['saveTodo'])
+        window.dataLayer.push({ action: 'saveTodo' })
         store.put(todo)
     }
 
     $scope.toggleCompleted = function (todo, completed) {
-        window.dataLayer.push(['toggleCompleted'])
+        window.dataLayer.push({ action: 'toggleCompleted' })
         if (angular.isDefined(completed)) {
             todo.completed = completed
         }
@@ -117,7 +117,7 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     }
 
     $scope.clearCompletedTodos = function () {
-        window.dataLayer.push(['clearCompletedTodos'])
+        window.dataLayer.push({ action: 'clearCompletedTodos' })
         store.clearCompleted()
     }
 
