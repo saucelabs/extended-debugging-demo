@@ -26,6 +26,7 @@ exports.config = {
         // 'path/to/excluded/files'
     ],
     suites: {
+        analytics: ['./test/js/analytics.e2e.js'],
         blocked: ['./test/js/blocked.e2e.js'],
         offlineTest: ['./test/js/offline.test.e2e.js'],
         populateTest: ['./test/js/populate.test.e2e.js'],
