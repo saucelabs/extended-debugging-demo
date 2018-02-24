@@ -39,11 +39,14 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
 
         $scope.saving = true
         store.insert(newTodo)
-            .then(function success () {
+            .then(function success (wasSuccessful) {
                 $scope.newTodo = ''
+
+                if (!wasSuccessful) {
+                    return window.logEvent('addTodoError', 'pageEvent', 'useraction')
+                }
+
                 window.logEvent('addTodo', 'pageEvent', 'useraction')
-            }, () => {
-                window.logEvent('addTodoError', 'pageEvent', 'useraction')
             })
             .finally(function () {
                 $scope.saving = false
