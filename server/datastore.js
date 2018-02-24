@@ -6,14 +6,17 @@ export default class DataStore {
     save (data) {
         data.id = this.store.size
         this.store.set(data.id, data)
+        console.log('Save todo to store', this.store)
     }
 
     delete (key) {
-        this.store.delete(key)
+        const success = this.store.delete(key)
+        console.log(`Deleted todo with key ${key} ${success ? 'successfully' : 'not successfully'}`)
     }
 
     deleteAll () {
         this.store = new Map()
+        console.log('Cleared data store')
     }
 
     deleteComplete () {
@@ -28,6 +31,7 @@ export default class DataStore {
 
     update (key, data) {
         this.store.set(key, data)
+        console.log(`Update todo with key ${key}: ${data}`)
     }
 
     getAll () {
