@@ -29,10 +29,9 @@ exports.config = {
         analytics: ['./test/js/analytics.e2e.js'],
         blocked: ['./test/js/blocked.e2e.js'],
         offlineTest: ['./test/js/offline.test.e2e.js'],
-        populateTest: ['./test/js/populate.test.e2e.js'],
-        prePopulateTest: ['./test/js/prepopulate.test.e2e.js'],
         pageload: ['./test/js/pageload.e2e.js'],
-        metricsWithCC: ['./test/js/metrics.logs.withcc.e2e.js']
+        populateTest: ['./test/js/populate.test.e2e.js'],
+        prePopulateTest: ['./test/js/prepopulate.test.e2e.js']
     },
     //
     // ============
