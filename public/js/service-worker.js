@@ -55,13 +55,9 @@ self.addEventListener('install', function (event) {
              * cache, after making requests for them.
              */
             return cache.addAll(offlineFundamentals)
-        }, (e) => {
-            console.error(123, e)
         })
         .then(function () {
             console.log('WORKER: install completed')
-        }, (e) => {
-            console.error(456, e)
         })
     )
 })
@@ -89,9 +85,12 @@ self.addEventListener('fetch', function (event) {
     }
 
     /**
-     * don't cache 3rd party script
+     * don't cache 3rd party script and API responses
      */
-    if (event.request.url.includes('thirdPartyScript.js')) {
+    if (
+        event.request.url.includes('thirdPartyScript.js') ||
+        event.request.url.startsWith('/api/')
+    ) {
         return
     }
 
