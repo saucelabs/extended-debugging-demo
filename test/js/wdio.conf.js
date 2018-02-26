@@ -7,9 +7,10 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    // user: process.env.SAUCE_USERNAME, // 'admin'
-    // key: process.env.SAUCE_ACCESS_KEY, // '0e779f56-385a-41be-a562-6f6908bf5acf'
-    //
+    user: process.env.SAUCE_USERNAME,
+    key: process.env.SAUCE_ACCESS_KEY,
+    protocol: 'https',
+
     // ==================
     // Specify Test Files
     // ==================
@@ -18,13 +19,8 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
-    specs: [
-        './test/js/*.e2e.js'
-    ],
-    // Patterns to exclude.
-    exclude: [
-        // 'path/to/excluded/files'
-    ],
+    specs: [],
+    exclude: [],
     suites: {
         analytics: ['./test/js/analytics.e2e.js'],
         blocked: ['./test/js/blocked.e2e.js'],
@@ -56,23 +52,12 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-        loggingPrefs: {
-            'browser': 'ALL',
-            'driver': 'ALL',
-            'performance': 'ALL'
-        },
         extendedDebugging: true,
         crmuxdriverVersion: '0.2.0',
         browserName: 'chrome',
         platform: 'Windows 10',
         version: '64.0',
-        build: 'Build ' + Date.now(),
-        chromeOptions: {
-            args: ['remote-debugging-port=9222'],
-            perfLoggingPrefs: {
-                enableNetwork: true
-            }
-        }
+        build: 'Build ' + Date.now()
     }],
     //
     // ===================
@@ -86,7 +71,7 @@ exports.config = {
     sync: true,
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'silent',
+    logLevel: 'verbose',
     //
     // Enables colors for log output.
     coloredLogs: true,
