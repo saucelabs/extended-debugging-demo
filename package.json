@@ -11,7 +11,13 @@
     "start": "npm run build && node ./build",
     "test": "run-s eslint test:wdio",
     "test:wdio": "wdio ./test/js/wdio.conf.js",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "demo:analytics": "wdio ./test/js/wdio.conf.js --suite analytics",
+    "demo:offline": "wdio ./test/js/wdio.conf.js --suite offline",
+    "demo:blocked": "wdio ./test/js/wdio.conf.js --suite blocked",
+    "demo:pageload": "wdio ./test/js/wdio.conf.js --suite pageload",
+    "demo:populate": "wdio ./test/js/wdio.conf.js --suite populate",
+    "demo:prepopulate": "wdio ./test/js/wdio.conf.js --suite prePopulate"
   },
   "repository": {
     "type": "git",

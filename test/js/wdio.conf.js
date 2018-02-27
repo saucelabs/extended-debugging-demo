@@ -24,10 +24,10 @@ exports.config = {
     suites: {
         analytics: ['./test/js/analytics.e2e.js'],
         blocked: ['./test/js/blocked.e2e.js'],
-        offlineTest: ['./test/js/offline.test.e2e.js'],
+        offline: ['./test/js/offline.test.e2e.js'],
         pageload: ['./test/js/pageload.e2e.js'],
-        populateTest: ['./test/js/populate.test.e2e.js'],
-        prePopulateTest: ['./test/js/prepopulate.test.e2e.js']
+        populate: ['./test/js/populate.test.e2e.js'],
+        prePopulate: ['./test/js/prepopulate.test.e2e.js']
     },
     //
     // ============
