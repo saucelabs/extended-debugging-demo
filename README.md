@@ -45,7 +45,7 @@ Some companies need to make sure that analytics request are made properly so the
 - log command (sauce:network)
 
 #### Execute via
-```js
+```sh
 $ npm run demo:analytics
 ```
 
@@ -58,7 +58,7 @@ The demo app tries to load a third party script that takes up to 5 seconds to lo
 - log command (sauce:network, sauce:metrics)
 
 #### Execute via
-```js
+```sh
 $ npm run demo:blocked
 ```
 
@@ -70,7 +70,7 @@ The demo app is offline ready, so it works when the user has no internet connect
 - throttle command
 
 #### Execute via
-```js
+```sh
 $ npm run demo:offline
 ```
 
@@ -82,7 +82,7 @@ This demo checks if the page loads under 5 seconds. Since the third party script
 - log command (sauce:network)
 
 #### Execute via
-```js
+```sh
 $ npm run demo:pageload
 ```
 
@@ -91,7 +91,7 @@ $ npm run demo:pageload
 This demo shows how slow and brittle it can be to use the UI to bring the application into a certain state (e.g. have 10 Todos entered in DB).
 
 #### Execute via
-```js
+```sh
 $ npm run demo:populate
 ```
 
@@ -103,6 +103,6 @@ This demo fixes the flaw of the Populate Demo by setting the state of the app us
 - intercept command (mock responses)
 
 #### Execute via
-```js
+```sh
 $ npm run demo:prepopulate
 ```
