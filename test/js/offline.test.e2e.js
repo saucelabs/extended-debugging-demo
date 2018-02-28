@@ -1,7 +1,7 @@
 import assert from 'assert'
 
 describe('check if page can be opened offline', () => {
-    it('should open the webpage with internetconnection', () => {
+    it('should open the webpage with internet connection', () => {
         browser.url('/')
         browser.pause(2000)
         assert.deepEqual(browser.getTitle(), 'AngularJS • TodoMVC')

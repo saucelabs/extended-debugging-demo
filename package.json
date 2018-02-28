@@ -17,7 +17,8 @@
     "demo:blocked": "wdio ./test/js/wdio.conf.js --suite blocked",
     "demo:pageload": "wdio ./test/js/wdio.conf.js --suite pageload",
     "demo:populate": "wdio ./test/js/wdio.conf.js --suite populate",
-    "demo:prepopulate": "wdio ./test/js/wdio.conf.js --suite prePopulate"
+    "demo:prepopulate": "wdio ./test/js/wdio.conf.js --suite prePopulate",
+    "demo:debug": "wdio ./test/js/wdio.conf.js --suite debug"
   },
   "repository": {
     "type": "git",

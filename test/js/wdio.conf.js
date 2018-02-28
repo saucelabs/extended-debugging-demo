@@ -27,7 +27,8 @@ exports.config = {
         offline: ['./test/js/offline.test.e2e.js'],
         pageload: ['./test/js/pageload.e2e.js'],
         populate: ['./test/js/populate.test.e2e.js'],
-        prePopulate: ['./test/js/prepopulate.test.e2e.js']
+        prePopulate: ['./test/js/prepopulate.test.e2e.js'],
+        debug: ['./test/js/debug.e2e.js']
     },
     //
     // ============
