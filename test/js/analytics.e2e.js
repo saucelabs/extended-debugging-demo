@@ -13,7 +13,6 @@ describe('analytics check', () => {
 
     it('should make a proper request to Google Analytics', () => {
         const requests = browser.log('sauce:network').value.requests
-        console.log(requests.map(r => r.url + '\n'));
         const eventTagRequest = requests.find((req) => req.url.includes('ec=pageEvent&ea=addTodo&el=useraction'))
         assert.ok(eventTagRequest, 'Did not made proper analytics request')
     })
