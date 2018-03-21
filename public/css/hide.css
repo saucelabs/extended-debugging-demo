@@ -1,0 +1,7 @@
+/**
+ * This stylesheet hides the application and only leaves the footer visible.
+ * It is purely used for testing purposes and does not provide any application value.
+ */
+#todoapp {
+    display: none;
+}

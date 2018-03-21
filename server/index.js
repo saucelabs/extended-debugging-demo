@@ -31,7 +31,14 @@ export default class Application {
          */
         this.app.get('/thirdPartyScript.js', (req, res) => setTimeout(() => {
             res.set({ 'Content-Type': 'text/javascript' }).send('// nothing here actually')
-        }, 5000))
+        }, 0))
+
+        /**
+         * serve stylesheet that hides the app
+         */
+        this.app.get('/css/hide.css', (req, res) => {
+            res.sendFile(path.join(__dirname, '..', 'public', 'css', 'hide.css'))
+        })
     }
 
     run () {

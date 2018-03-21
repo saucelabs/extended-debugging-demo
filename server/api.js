@@ -31,7 +31,7 @@ export default class APIDemoServer {
             /**
              * add slow response times
              */
-            const delay = Math.random() * 3 * 1000
+            const delay = 0 // Math.random() * 3 * 1000
             console.log(`Serve ${req.path} with delay of ${delay}ms`)
             return setTimeout(next, delay)
         })
