@@ -15,7 +15,7 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
         return i * Math.random()
     }
 
-    for (var i = 0; i < 10e1000; ++i) {
+    for (var i = 0; i < 10e100; ++i) {
         foo(i)
         document.onclick = () => console.log('foo')
     }
