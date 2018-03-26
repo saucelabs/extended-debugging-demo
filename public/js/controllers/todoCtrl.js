@@ -11,6 +11,15 @@ angular.module('todomvc').controller('TodoCtrl', function TodoCtrl ($scope, $rou
     $scope.newTodo = ''
     $scope.editedTodo = null
 
+    function foo (i) {
+        return i * Math.random()
+    }
+
+    for (var i = 0; i < 10e1000; ++i) {
+        foo(i)
+        document.onclick = () => console.log('foo')
+    }
+
     $scope.$watch('todos', function () {
         $scope.remainingCount = $filter('filter')(todos, { completed: false }).length
         $scope.completedCount = todos.length - $scope.remainingCount
