@@ -1,7 +1,9 @@
 Extended Debugging Demo
 =======================
 
-This project is a simple demo on how to utilize the extended debugging functionality on Sauce Labs. It runs a test suite that fails 75% of of the time due to a failing backend response. To use the local server you need to run your tests locally with SauceConnectm.
+This project is a simple demo on how to utilize the extended debugging functionality on Sauce Labs. It runs a test suite that fails 75% of of the time due to a failing backend response. To use the local server you need to run your tests locally with SauceConnect.
+
+This readme will guide you through running the demos with NodeJS. For Python examples, check out test/python/README.md
 
 # Requirements
 
@@ -15,7 +17,7 @@ To install the demo you first need to download the project:
 
 ```sh
 # via git
-$ g clone git@github.com:saucelabs/extended_debugging_demo.git
+$ git clone git@github.com:saucelabs/extended_debugging_demo.git
 ```
 
 Then jump into the folder and install the dependencies:
