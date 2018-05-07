@@ -3,7 +3,7 @@ Extended Debugging Demo - Python
 
 Here are some additional sample code for running the Extended Debugging Demo tests in Python.  For general server setup read the main repo README.md
 
-# Environment Setup
+## Environment Setup
  
 1. Global Dependencies
     * [Install Python](https://www.python.org/downloads/)
@@ -29,7 +29,9 @@ Here are some additional sample code for running the Extended Debugging Demo tes
 	* Install the required packages:
 	```$ pip install -r requirements.txt```
 
-# Running Tests:  -n option designates number of parallel tests and -s to disable output capture.
+## Running Tests:
+
+* -n option designates number of parallel tests and -s to disable output capture.
 
 *  Tests in Parallel:
     It is not recommended to run this particular set of tests in parallel as they hit the same server and can cause the tests to conflict
@@ -38,7 +40,7 @@ Here are some additional sample code for running the Extended Debugging Demo tes
     ```$ cat $(find . -name "*.testlog")```
 
 
-# Run Demo
+## Run Demo
 
 To run the demo make sure you have `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` set in your environment variables. If not you can set these via:
 
@@ -122,7 +124,7 @@ $ py.test tests/test_prepopulate.py
 
 [Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/)
 
-# Advice/Troubleshooting
+## Advice/Troubleshooting
 
 There may be additional latency when using a remote webdriver to run tests on Sauce Labs. Timeouts or Waits may need to be increased.
     * [Selenium tips regarding explicit waits](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Explicit+Waits)
@@ -139,7 +141,7 @@ There may be additional latency when using a remote webdriver to run tests on Sa
 ##### [Stack Overflow](http://stackoverflow.com/)
 * A great resource to search for issues not explicitly covered by documentation.
 
-# Known Issues:
+## Known Issues:
 * Test output will be captured in .testlog files as the pytest-xdist plugin has issues with not capturing stdout and stderr. You can use the following commands to output session id's for CI integration and clean up.
 ```
 $ cat *.testlog
