@@ -57,6 +57,11 @@ typings/
 # dotenv environment variables file
 .env
 
+*.pyc
+*.testlog
+.cache
+__pycache__
+
 errorShots
 .DS_Store
 build
