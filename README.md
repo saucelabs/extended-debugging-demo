@@ -3,7 +3,9 @@ Extended Debugging Demo
 
 This project is a simple demo on how to utilize the extended debugging functionality on Sauce Labs. It runs a test suite that fails 75% of of the time due to a failing backend response. To use the local server you need to run your tests locally with SauceConnect.
 
-This readme will guide you through running the demos with NodeJS. For Python examples, check out test/python/README.md
+This readme will guide you through running the demos with NodeJS.
+For Python examples, check out test/python/README.md
+For Java examples, check out test/java/README.md
 
 # Requirements
 
