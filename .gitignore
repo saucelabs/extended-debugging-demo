@@ -61,6 +61,7 @@ typings/
 *.testlog
 .cache
 __pycache__
+.pytest_cache
 
 errorShots
 .DS_Store
