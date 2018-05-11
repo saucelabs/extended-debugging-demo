@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.mark.usefixtures('driver')
-class TestPrePopulate(object):
+class TestPrepopulate(object):
     def test_prepopulate(self, driver):
         todo_list=[
         'Prepare proposal for SauceCon 2018',

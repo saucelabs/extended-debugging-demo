@@ -14,7 +14,6 @@ class TestPageLoad(object):
         assert page_load_time <= 5
 
         network_timings = driver.get_log('sauce:network')['requests']
-        #print type(network_timings),network_timings
         timings_per_url = [{'url': req['url'], 'load_time': get_load_time(req)} for req in network_timings]
         sorted_timings = sorted(timings_per_url, key=lambda item: item['load_time'], reverse=True)
         with capsys.disabled():
