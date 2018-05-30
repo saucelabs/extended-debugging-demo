@@ -8,15 +8,22 @@ from selenium.webdriver.support import expected_conditions as EC
 class TestPageLoad(object):
 
     def test_page_load(self, driver, capsys):
+
+        #it should load fast, but 3rd party scripts might make it slow
         driver.get('https://saucecon.herokuapp.com')
         metrics = driver.get_log('sauce:metrics')
         page_load_time = metrics['domContentLoaded'] - metrics['navigationStart']
-        assert page_load_time <= 5
+        assert page_load_time <= 5, 'Expected page load time to be lower than 5s but was {}s'.format(page_load_time)
 
-        network_timings = driver.get_log('sauce:network')['requests']
+        #it should also feel fast for the user based on the speed index
+        performance = driver.get_log('sauce:performance')
+        assert performance['speedIndex']<1500, 'Expected speed index to be lower than 1500 but was {}'.format(performance['speedIndex'])
+
+        network_timings = driver.get_log('sauce:network')
         timings_per_url = [{'url': req['url'], 'load_time': get_load_time(req)} for req in network_timings]
         sorted_timings = sorted(timings_per_url, key=lambda item: item['load_time'], reverse=True)
         with capsys.disabled():
             for entry in sorted_timings:
                 print '\n{}: URL: {}'.format(sorted_timings.index(entry), entry['url'])
                 print 'load time: {}ms'.format(int(round(entry['load_time'])))
+

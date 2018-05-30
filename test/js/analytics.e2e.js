@@ -12,7 +12,7 @@ describe('analytics check', () => {
     })
 
     it('should make a proper request to Google Analytics', () => {
-        const requests = browser.log('sauce:network').value.requests
+        const requests = browser.log('sauce:network').value
         const eventTagRequest = requests.find((req) => req.url.includes('ec=pageEvent&ea=addTodo&el=useraction'))
         assert.ok(eventTagRequest, 'Did not made proper analytics request')
     })
@@ -28,7 +28,7 @@ describe('analytics check', () => {
     })
 
     it('should make proper request to Google Analytics that the request failed', () => {
-        const requests = browser.log('sauce:network').value.requests
+        const requests = browser.log('sauce:network').value
         const eventTagRequest = requests.find((req) => req.url.includes('ec=pageEvent&ea=addTodoError&el=useraction'))
         assert.ok(eventTagRequest, 'Did not made proper analytics request')
     })
