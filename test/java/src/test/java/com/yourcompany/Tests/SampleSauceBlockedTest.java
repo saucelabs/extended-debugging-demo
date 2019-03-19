@@ -8,7 +8,6 @@ import org.testng.annotations.AfterMethod;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertTrue;
 
@@ -39,11 +38,13 @@ public class SampleSauceBlockedTest extends SampleSauceTestBase {
         driver.get("https://saucecon.herokuapp.com");
         Map<String, Object> logType = new HashMap<>();
         logType.put("type","sauce:metrics");
-        List<Map<String, Object>> returnValue = (List<Map<String, Object>>) jsDriver.executeScript("sauce:log", logType);
-        Map<String, Object> metrics = returnValue.stream().collect(Collectors.toMap(m -> (String) m.get("name"), m -> m.get("value")));
+        Map<String, Object> metrics = (Map<String, Object>) jsDriver.executeScript("sauce:log", logType);
         double pageLoadTime = (double)metrics.get("domContentLoaded") - (double)metrics.get("navigationStart");
         assertTrue(pageLoadTime < 5);
 
+        logType.put("type","sauce:performance");
+        Map<String, Object> performance = (Map<String, Object>) jsDriver.executeScript("sauce:log", logType);
+        assertTrue((double) performance.get("speedIndex") < 1500);
     }
 
     @AfterMethod

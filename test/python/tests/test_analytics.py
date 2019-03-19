@@ -32,11 +32,11 @@ class TestAnalytics(object):
 
         todo = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, "(//label[@class])")))
-        assert todo.text == RANDOM_TODO
+        assert todo.text == RANDOM_TODO, 'Todo text did not match the entered text'
 
         # should make a proper request to Google Analytics
-        requests = driver.get_log('sauce:network')['requests']
-        assert [item for item in requests if 'ec=pageEvent&ea=addTodo&el=useraction' in item['url']] != []
+        requests = driver.get_log('sauce:network')
+        assert [item for item in requests if 'ec=pageEvent&ea=addTodo&el=useraction' in item['url']] != [], 'Did not made proper analytics request'
 
         # should fail entering a new todo after intercepting the request with an error
         driver.execute_script('sauce:intercept', {
@@ -47,5 +47,5 @@ class TestAnalytics(object):
         new_todo.send_keys(FAILING_TODO)
         new_todo.send_keys(Keys.RETURN)
 
-        requests = driver.get_log('sauce:network')['requests']
-        assert [item for item in requests if 'ec=pageEvent&ea=addTodoError&el=useraction' in item['url']] != []
+        requests = driver.get_log('sauce:network')
+        assert [item for item in requests if 'ec=pageEvent&ea=addTodoError&el=useraction' in item['url']] != [], 'Did not made proper analytics request'
