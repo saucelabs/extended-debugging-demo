@@ -13,13 +13,11 @@ describe('my demo app', () => {
 
             browser.url('/')
 
-            console.log(browser.log('sauce:metrics'))
-            const { value } = browser.log('sauce:metrics')
-            const pageLoadTime = value.domContentLoaded - value.navigationStart
-            assert.ok(pageLoadTime <= 5, `Expected page load time to be lower than 5s but was ${pageLoadTime}s`)
+            const { value } = browser.log('sauce:performance')
+            assert.ok(value.load <= 5, `Expected page load time to be lower than 5s but was ${value.load}s`)
         })
 
-        after('test', () => {
+        after(() => {
             const timings = browser.log('sauce:network')
             const timingsPerUrl = timings.value.requests.map((req) => ({
                 url: req.url,

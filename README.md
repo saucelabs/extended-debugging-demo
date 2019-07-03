@@ -61,7 +61,7 @@ The demo app tries to load a third party script that takes up to 5 seconds to lo
 
 #### Used Features:
 - intercept command (block request)
-- log command (sauce:network, sauce:metrics)
+- log command (sauce:network, sauce:performance)
 
 #### Execute via
 ```sh

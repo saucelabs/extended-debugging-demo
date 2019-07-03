@@ -4,7 +4,7 @@ Extended Debugging Demo - Python
 Here are some additional sample code for running the Extended Debugging Demo tests in Python.  For general server setup read the main repo README.md
 
 ## Environment Setup
- 
+
 1. Global Dependencies
     * [Install Python](https://www.python.org/downloads/)
     * Or Install Python with [Homebrew](http://brew.sh/)
@@ -70,7 +70,7 @@ The demo app tries to load a third party script that takes up to 5 seconds to lo
 
 #### Used Features:
 - intercept command (block request)
-- log command (sauce:network, sauce:metrics)
+- log command (sauce:network, sauce:performance)
 
 #### Execute via
 ```sh

@@ -16,7 +16,7 @@ public class SampleSauceBlockedTest extends SampleSauceTestBase {
 
     /**
      * Demonstrates how sauce:intercept custom command can be used to block access to slow-loading
-     * 3rd-party scripts and verified with sauce:metrics and sauce:network custom commands.
+     * 3rd-party scripts and verified with sauce:performance and sauce:network custom commands.
      * Compare this with SaucePageLoadTest
      */
     @org.testng.annotations.Test(dataProvider = "hardCodedBrowsers")
@@ -29,7 +29,7 @@ public class SampleSauceBlockedTest extends SampleSauceTestBase {
 
         // block the 3rd party script
         driver.get("https://saucecon.herokuapp.com");
- 
+
         Map<String, String> interceptMap = new HashMap<>();
         interceptMap.put("url", "https://saucecon.herokuapp.com/thirdPartyScript.js");
         interceptMap.put("error", "Failed");
@@ -38,7 +38,7 @@ public class SampleSauceBlockedTest extends SampleSauceTestBase {
         //it should load fast
         driver.get("https://saucecon.herokuapp.com");
         Map<String, Object> logType = new HashMap<>();
-        logType.put("type","sauce:metrics");
+        logType.put("type","sauce:performance");
         List<Map<String, Object>> returnValue = (List<Map<String, Object>>) jsDriver.executeScript("sauce:log", logType);
         Map<String, Object> metrics = returnValue.stream().collect(Collectors.toMap(m -> (String) m.get("name"), m -> m.get("value")));
         double pageLoadTime = (double)metrics.get("domContentLoaded") - (double)metrics.get("navigationStart");

@@ -28,10 +28,10 @@ public class SampleSaucePageLoadTest extends SampleSauceTestBase {
         driver.get("https://saucecon.herokuapp.com");
 
         Map<String, Object> logType = new HashMap<>();
-        logType.put("type","sauce:metrics");
+        logType.put("type","sauce:performance");
         List<Map<String, Object>> returnValue = (List<Map<String, Object>>) jsDriver.executeScript("sauce:log", logType);
         Map<String, Object> metrics = returnValue.stream().collect(Collectors.toMap(m -> (String) m.get("name"), m -> m.get("value")));
-        double pageLoadTime = (double)metrics.get("domContentLoaded") - (double)metrics.get("navigationStart");
+        double pageLoadTime = (double)metrics.get("load");
         assertTrue(pageLoadTime < 5);
     }
 
