@@ -87,4 +87,5 @@ __pycache__
 errorShots
 .DS_Store
 build
-
+package-lock.json
+test/js/logs

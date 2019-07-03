@@ -13,20 +13,22 @@ describe('my demo app', () => {
 
             browser.url('/')
 
-            const { value } = browser.log('sauce:performance')
-            assert.ok(value.load <= 5, `Expected page load time to be lower than 5s but was ${value.load}s`)
+            const { load } = browser.execute('sauce:log', { type: 'sauce:performance' })
+            assert.ok(load <= 5000, `Expected page load time to be lower than 5s but was ${load}s`)
         })
 
         after(() => {
-            const timings = browser.log('sauce:network')
-            const timingsPerUrl = timings.value.requests.map((req) => ({
+            const requests = browser.execute('sauce:log', { type: 'sauce:network' })
+            const timingsPerUrl = requests.map((req) => ({
                 url: req.url,
                 loadTime: getLoadTime(req)
             })).sort((a, b) => b.loadTime - a.loadTime)
 
             let i = 1
             for (const entry of timingsPerUrl) {
+                // eslint-disable-next-line
                 console.log(i + ':', 'URL: ', entry.url)
+                // eslint-disable-next-line
                 console.log('load time: ', Math.round(entry.loadTime), 'ms\n')
                 ++i
             }

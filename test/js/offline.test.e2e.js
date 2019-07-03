@@ -14,8 +14,8 @@ describe('check if page can be opened offline', () => {
     it('should still be able to access page content', () => {
         browser.url('/')
 
-        browser.waitForExist('#info')
-        assert.ok(browser.getText('#info').includes('Offline Version'))
-        assert.ifError(browser.isEnabled('#new-todo'))
+        const infoLabel = $('#info')
+        infoLabel.waitForExist()
+        assert.ok(infoLabel.getText().includes('Offline Version'))
     })
 })
