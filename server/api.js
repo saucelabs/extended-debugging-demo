@@ -23,10 +23,10 @@ export default class APIDemoServer {
             /**
              * add failing likelihood
              */
-            if (parseInt(Math.random() * 100, 10) < 10) {
-                console.log(`trigger ${req.path} to fail`)
-                return res.status(500).json({ error: 'Failed to respond' })
-            }
+            // if (parseInt(Math.random() * 100, 10) < 10) {
+            //     console.log(`trigger ${req.path} to fail`)
+            //     return res.status(500).json({ error: 'Failed to respond' })
+            // }
 
             /**
              * add slow response times
